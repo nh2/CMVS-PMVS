@@ -106,7 +106,7 @@ void errexit(char *f_str,...)
 
   sprintf(out2, "Error! %s", out1);
 
-  fprintf(stdout, out2);
+  fputs(stdout, out2);
   fflush(stdout);
 
   abort();
