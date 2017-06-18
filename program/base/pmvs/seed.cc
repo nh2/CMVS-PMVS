@@ -2,6 +2,7 @@
 #include <numeric>
 #include <ctime>
 #include <time.h>
+#include <random>
 #include "seed.h"
 #include "findMatch.h"
 
@@ -55,7 +56,8 @@ void Cseed::run(void) {
   for (int i = 0; i < m_fm.m_tnum; ++i)
     vitmp.push_back(i);
 
-  random_shuffle(vitmp.begin(), vitmp.end());
+  std::mt19937 gen(42);
+  shuffle(vitmp.begin(), vitmp.end(), gen);
   m_fm.m_jobs.insert(m_fm.m_jobs.end(), vitmp.begin(), vitmp.end());
 
   cerr << "adding seeds " << endl;

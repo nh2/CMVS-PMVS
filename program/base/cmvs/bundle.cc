@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iterator>
 #include <numeric> //PM
+#include <random>
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -758,7 +759,8 @@ void Cbundle::mergeSfMP(void) {
     order.resize(cpnum);
     for (int p = 0; p < cpnum; ++p)
       order[p] = p;
-    random_shuffle(order.begin(), order.end());
+    std::mt19937 gen(42);
+    shuffle(order.begin(), order.end(), gen);
     
     for (int p = 0; p < cpnum; ++p)
       m_jobs.push_back(order[p]);
