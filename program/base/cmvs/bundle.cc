@@ -663,7 +663,7 @@ void Cbundle::findPNeighbors(sfcnn<const float*, 3, float>& tree,
 }
 
 void Cbundle::mergeSfMPThread(void) {
-  const int tenth = (int)m_coords.size() / 10;
+  const int tenth = max(1, (int)m_coords.size() / 10);
   while (1) {
     int pid = -1;
     mtx_lock(&m_lock);
